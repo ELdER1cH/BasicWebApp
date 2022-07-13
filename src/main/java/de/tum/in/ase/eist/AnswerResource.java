@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "api", produces = {MediaType.TEXT_PLAIN_VALUE})
 public class AnswerResource {
+	//test
 
 	private final Logger logger = LoggerFactory.getLogger(AnswerResource.class);
 
