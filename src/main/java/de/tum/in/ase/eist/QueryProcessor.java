@@ -2,6 +2,9 @@ package de.tum.in.ase.eist;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 @Service
 public class QueryProcessor {
 
@@ -18,13 +21,22 @@ public class QueryProcessor {
                 String[] words = query.split(" ");
                 int result =Integer.parseInt(words[2])+Integer.parseInt(words[4]);
                 return String.valueOf(result);
-            }else{
+            }else if (query.contains("minus")){
                 String[] words = query.split(" ");
                 return String.valueOf(Integer.parseInt(words[2])-Integer.parseInt(words[4]));
+            }else {
+                return "";
             }
         } else if (query.contains("which of the following numbers is the largest:")){
             String[] first = query.split(":");
-            return "";
+            String[] numbers = first[1].split(" ");
+            for (int i = 0; i < numbers.length; i++) {
+                numbers[i] = numbers[i].replace(",","");
+                numbers[i] = numbers[i].replace("\"","");
+            }
+            String[] secondNumbers = Arrays.copyOfRange(numbers,1,numbers.length);
+            int[] intNumbers = Arrays.stream(secondNumbers).map(Integer::parseInt).sorted().mapToInt(i->i).toArray();
+            return String.valueOf(intNumbers[intNumbers.length-1]);
         } else{
             return "";
         }
