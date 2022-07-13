@@ -13,7 +13,19 @@ public class QueryProcessor {
                     "writer in the English language and the world's pre-eminent dramatist.";
         } else if (query.contains("name")) {
            return "Maxi";
-        } else { // TODO extend the programm here
+        } else if (query.contains("what is")) { // TODO extend the programm here
+            if (query.contains("plus")){
+                String[] words = query.split(" ");
+                int result =Integer.parseInt(words[2])+Integer.parseInt(words[4]);
+                return String.valueOf(result);
+            }else{
+                String[] words = query.split(" ");
+                return String.valueOf(Integer.parseInt(words[2])-Integer.parseInt(words[4]));
+            }
+        } else if (query.contains("which of the following numbers is the largest:")){
+            String[] first = query.split(":");
+            return "";
+        } else{
             return "";
         }
     }

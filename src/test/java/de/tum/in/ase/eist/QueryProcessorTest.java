@@ -23,6 +23,13 @@ class QueryProcessorTest {
 	}
 
 	@Test
+	void testAddition(){
+		String test = "What is 4 plus 5";
+		String actual = queryProcessor.process(test);
+		assertEquals("9",actual);
+	}
+
+	@Test
 	void isNotCaseSensitive() {
 		String actual = queryProcessor.process("shakespeare");
 		if (!actual.contains("playwright")) {
